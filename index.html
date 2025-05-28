@@ -18,28 +18,19 @@
 
   <style>
     :root {
-      --primary-color: #6366F1;
-      /* Indigo */
-      --primary-hover-color: #4F46E5;
-      --secondary-color: #10B981;
-      /* Emerald */
-      --background-color: #111827;
-      /* Dark Gray */
-      --surface-color: #1F2937;
-      /* Lighter Dark Gray for cards/elements */
-      --text-color: #D1D5DB;
-      /* Light Gray */
-      --heading-color: #F9FAFB;
-      /* Off-white */
-      --border-color: #374151;
-      /* Slightly lighter border */
+      --primary-color: #6750A4;      /* Material 3 Primary */
+      --primary-hover-color: #7F67BE; /* Primary hover state */
+      --secondary-color: #E8DEF8;     /* Material 3 Secondary container */
+      --background-color: #FFFBFE;    /* Material 3 Background */
+      --surface-color: #FDF8FF;       /* Material 3 Surface */
+      --text-color: #1C1B1F;         /* Material 3 On background */
+      --text-secondary-color: #49454F; /* Material 3 Secondary text */
+      --heading-color: #21005D;       /* Material 3 On Primary Container */
+      --border-color: #E7E0EC;        /* Material 3 Outline */
       --font-family: 'Inter', sans-serif;
-      --border-radius-sm: 0.375rem;
-      /* 6px */
-      --border-radius-md: 0.5rem;
-      /* 8px */
-      --border-radius-lg: 0.75rem;
-      /* 12px */
+      --border-radius-sm: 0.375rem;   /* 6px */
+      --border-radius-md: 0.5rem;     /* 8px */
+      --border-radius-lg: 0.75rem;    /* 12px */
       --container-padding: 1.5rem;
       --section-padding-y: 6rem;
       --transition-speed: 0.3s;
@@ -136,7 +127,7 @@
 
     .btn {
       background-color: var(--primary-color);
-      color: #fff;
+      color: #FFFFFF;
       padding: 0.875rem 1.75rem;
       border-radius: var(--border-radius-md);
       font-size: 1rem;
@@ -155,14 +146,14 @@
     }
 
     .btn-secondary {
-      background-color: var(--surface-color);
+      background-color: var(--secondary-color);
       color: var(--primary-color);
       border: 1px solid var(--primary-color);
     }
 
     .btn-secondary:hover {
       background-color: var(--primary-color);
-      color: #fff;
+      color: #FFFFFF;
     }
 
     .grid {
@@ -211,7 +202,7 @@
     }
 
     .highlight {
-      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      background: linear-gradient(to right, var(--primary-color), #7F67BE);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -220,8 +211,7 @@
 
     /* Header & Navigation */
     .site-header {
-      background-color: rgba(17, 24, 39, 0.85);
-      /* Semi-transparent dark */
+      background-color: rgba(255, 251, 254, 0.85); /* Light background */
       backdrop-filter: blur(10px);
       padding: 1rem 0;
       position: sticky;
@@ -334,44 +324,95 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
     }
 
-    /* Services/Promise Section (Why Work With Me) */
+    /* Services/Promise Section */
     .services-section {
       background-color: var(--surface-color);
-      /* Slight contrast */
+      padding: var(--section-padding-y) 0;
+    }
+
+    .services-section h2 {
+      text-align: left;
+      font-weight: normal;
+      margin-bottom: 3rem;
+    }
+
+    .services-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: stretch;
     }
 
     .service-card {
-      background: var(--background-color);
-      /* Back to main bg for depth */
-      padding: 2rem 1.5rem;
+      background: var(--surface-color);
+      padding: 2.5rem 2rem;
       border-radius: var(--border-radius-lg);
       border: 1px solid var(--border-color);
       transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
       text-align: center;
+      flex: 1 1 300px;
+      max-width: 380px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+      background-size: 20px 20px;
+      background-position: -10px -10px;
+      opacity: 0.2;
+      border-radius: var(--border-radius-lg);
     }
 
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
-      /* Primary color shadow */
+      box-shadow: 0 8px 20px rgba(99, 102, 241, 0.1);
     }
 
     .service-card .icon {
       font-size: 2.5rem;
       color: var(--primary-color);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       display: inline-block;
+      position: relative;
+      z-index: 1;
     }
 
     .service-card h4 {
       color: var(--heading-color);
-      margin-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
     }
 
     .service-card p {
       font-size: 0.95rem;
       color: var(--text-color);
-      opacity: 0.8;
+      opacity: 0.9;
+      margin: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .services-grid {
+        gap: 1.5rem;
+      }
+      
+      .service-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
     }
 
     /* Projects Section */
@@ -456,7 +497,7 @@
     .contact-form {
       max-width: 700px;
       margin: 0 auto;
-      background: var(--background-color);
+      background: var(--surface-color);
       padding: 2.5rem;
       border-radius: var(--border-radius-lg);
       border: 1px solid var(--border-color);
@@ -479,7 +520,7 @@
       padding: 0.875rem 1rem;
       border-radius: var(--border-radius-sm);
       border: 1px solid var(--border-color);
-      background-color: var(--surface-color);
+      background-color: var(--background-color);
       color: var(--text-color);
       font-family: var(--font-family);
       font-size: 1rem;
@@ -507,7 +548,7 @@
 
     /* Footer */
     .site-footer {
-      background-color: var(--background-color);
+      background-color: var(--surface-color);
       padding: 3rem 0;
       text-align: center;
       border-top: 1px solid var(--border-color);
@@ -644,25 +685,10 @@
       left: 0;
       width: 100%;
       height: 100vh;
-      /* Full viewport height */
       z-index: -2;
-      /* Ensure it's behind all other content, even header */
       overflow: hidden;
-      /* Prevent blobs from causing scrollbars */
-
-      /* --- Liquid / Metaball Effect --- */
-      /* The background color of the page should match this for seamless blending of blurred edges */
       background-color: var(--background-color);
-      /* Or #111827 directly */
-      filter: blur(30px) contrast(25);
-      /* Key for the gooey effect. Adjust values as needed! */
-      /* Higher blur needs higher contrast. */
-    }
-
-    .blob-wrapper {
-      position: absolute;
-      will-change: transform;
-      /* Performance hint for JS animations */
+      filter: blur(50px) contrast(50);
     }
 
     .blob {
@@ -672,114 +698,74 @@
       width: 100%;
       height: 100%;
       border-radius: 50%;
-      /* Base, will be animated */
-      opacity: 0.65;
-      /* Blobs are somewhat transparent */
-      background-size: 300% 300%;
-      /* For gradient animation */
       will-change: transform, border-radius, background-position;
-      /* Performance hints */
     }
 
-    /* --- Individual Blob Styles & Initial Positions (on wrappers) --- */
-    #blobWrap1 {
-      width: 45vmax;
-      height: 45vmax;
-      left: -10vmax;
-      top: -15vmax;
-    }
-
-    /* vmax for responsive sizing */
     .blob-style1 {
-      background: linear-gradient(45deg, var(--primary-color), #8B5CF6, var(--secondary-color));
-      animation:
-        animateGradient 18s ease infinite,
-        morphShape1 25s ease-in-out infinite alternate;
-    }
-
-    #blobWrap2 {
-      width: 40vmax;
-      height: 40vmax;
-      left: 60%;
-      top: 40%;
+      background: linear-gradient(45deg, var(--primary-color), #7F67BE, #CAC4D0);
+      opacity: 0.4;
     }
 
     .blob-style2 {
-      background: linear-gradient(-45deg, var(--secondary-color), #3B82F6, #EC4899);
-      animation:
-        animateGradient 22s ease infinite reverse,
-        /* Reverse for variation */
-        morphShape2 30s ease-in-out infinite alternate;
-    }
-
-    #blobWrap3 {
-      width: 30vmax;
-      height: 30vmax;
-      left: 25%;
-      top: 65%;
+      background: linear-gradient(-45deg, #E8DEF8, #6750A4, #D0BCFF);
+      opacity: 0.35;
     }
 
     .blob-style3 {
-      background: linear-gradient(90deg, #F59E0B, #EF4444, #D946EF);
-      animation:
-        animateGradient 16s ease infinite,
-        morphShape3 22s ease-in-out infinite alternate;
+      background: linear-gradient(90deg, #EADDFF, #6750A4, #B69DF8);
+      opacity: 0.45;
+    }
+
+    .blob-style4 {
+      background: linear-gradient(135deg, #E8DEF8, #6750A4, #D0BCFF);
+      opacity: 0.3;
+    }
+
+    /* Adjust blob wrapper sizes and positions for better visibility */
+    #blobWrap1 {
+      width: 55vmax;
+      height: 55vmax;
+      left: -15vmax;
+      top: -20vmax;
+    }
+
+    #blobWrap2 {
+      width: 50vmax;
+      height: 50vmax;
+      left: 50%;
+      top: 30%;
+    }
+
+    #blobWrap3 {
+      width: 45vmax;
+      height: 45vmax;
+      left: 20%;
+      top: 50%;
     }
 
     #blobWrap4 {
-      width: 25vmax;
-      height: 25vmax;
-      left: 70%;
-      top: 5%;
+      width: 35vmax;
+      height: 35vmax;
+      left: 65%;
+      top: 10%;
     }
 
-    /* Smaller, faster */
-    .blob-style4 {
-      background: linear-gradient(135deg, #4F46E5, #7C3AED, #0EA5E9);
-      opacity: 0.5;
-      /* More subtle */
-      animation:
-        animateGradient 20s ease infinite,
-        morphShape1 28s ease-in-out infinite alternate-reverse;
-      /* Use existing morph but reversed */
-    }
-
-
-    /* --- Keyframe Animations --- */
-    @keyframes animateGradient {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    /* Morphing shapes and subtle movements */
+    /* Enhance morphing animations for more visible movement */
     @keyframes morphShape1 {
       0% {
         transform: scale(1) translate(0, 0) rotate(0deg);
         border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
       }
-
       25% {
-        transform: scale(1.05) translate(20px, -15px) rotate(45deg);
+        transform: scale(1.1) translate(30px, -25px) rotate(45deg);
       }
-
       50% {
-        transform: scale(1.1) translate(5px, 10px) rotate(90deg);
+        transform: scale(1.2) translate(10px, 15px) rotate(90deg);
         border-radius: 40% 60% 70% 30% / 60% 30% 70% 40%;
       }
-
       75% {
-        transform: scale(1.05) translate(-20px, 15px) rotate(135deg);
+        transform: scale(1.1) translate(-30px, 25px) rotate(135deg);
       }
-
       100% {
         transform: scale(1) translate(0, 0) rotate(180deg);
         border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
@@ -791,20 +777,16 @@
         transform: scale(1) translate(0, 0) rotate(0deg);
         border-radius: 70% 30% 60% 40% / 70% 50% 50% 30%;
       }
-
       25% {
-        transform: scale(1.15) translate(-15px, 25px) rotate(-45deg);
+        transform: scale(1.2) translate(-25px, 35px) rotate(-45deg);
       }
-
       50% {
-        transform: scale(1.2) translate(10px, -5px) rotate(-90deg);
+        transform: scale(1.3) translate(15px, -10px) rotate(-90deg);
         border-radius: 30% 70% 40% 60% / 40% 70% 30% 60%;
       }
-
       75% {
-        transform: scale(1.15) translate(15px, -25px) rotate(-135deg);
+        transform: scale(1.2) translate(25px, -35px) rotate(-135deg);
       }
-
       100% {
         transform: scale(1) translate(0, 0) rotate(-180deg);
         border-radius: 70% 30% 60% 40% / 70% 50% 50% 30%;
@@ -816,20 +798,16 @@
         transform: scale(1) translate(0, 0) rotate(0deg);
         border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
       }
-
       25% {
-        transform: scale(0.95) translate(25px, 20px) rotate(60deg);
+        transform: scale(0.9) translate(35px, 30px) rotate(60deg);
       }
-
       50% {
-        transform: scale(0.9) translate(-10px, -10px) rotate(120deg);
+        transform: scale(0.8) translate(-15px, -15px) rotate(120deg);
         border-radius: 60% 40% 50% 50% / 50% 60% 40% 50%;
       }
-
       75% {
-        transform: scale(0.95) translate(-25px, -20px) rotate(180deg);
+        transform: scale(0.9) translate(-35px, -30px) rotate(180deg);
       }
-
       100% {
         transform: scale(1) translate(0, 0) rotate(240deg);
         border-radius: 50% 50% 40% 60% / 60% 40% 60% 40%;
@@ -849,7 +827,7 @@
     <div class="blob-wrapper" id="blobWrap3">
       <div class="blob blob-style3"></div>
     </div>
-    <div class="blob-wrapper" id="blobWrap4"> <!-- Added a smaller, faster one for more depth -->
+    <div class="blob-wrapper" id="blobWrap4">
       <div class="blob blob-style4"></div>
     </div>
   </div>
@@ -904,12 +882,12 @@
               blending strategy, psychology, and visual storytelling into powerful digital experiences.
             </p>
             <p>
-              As a motion designer, I bring digital products to life with animation that’s not just beautiful, but
-              purposeful. Whether it’s a subtle hover effect, an onboarding sequence, or a promotional video, I ensure
+              As a motion designer, I bring digital products to life with animation that's not just beautiful, but
+              purposeful. Whether it's a subtle hover effect, an onboarding sequence, or a promotional video, I ensure
               that every frame enhances usability and elevates storytelling.
             </p>
             <p>
-              I believe that design is not decoration — it’s a dialogue. And I design that dialogue with empathy,
+              I believe that design is not decoration — it's a dialogue. And I design that dialogue with empathy,
               motion, and precision.
             </p>
           </div>
@@ -921,11 +899,11 @@
       </div>
     </section>
 
-    <!-- Why Work With Me? (My Promise) -->
+    <!-- My Promise Section -->
     <section id="services" class="services-section section">
       <div class="container">
-        <h2 class="text-center mb-12" data-aos="fade-up">Why Work With Me?</h2>
-        <div class="grid grid-cols-3">
+        <h2 data-aos="fade-up">My Promise to You:</h2>
+        <div class="services-grid">
           <div class="service-card" data-aos="fade-up" data-aos-delay="100">
             <span class="icon"><i class="fas fa-bullseye"></i></span>
             <h4>Designs that Convert</h4>
